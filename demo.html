@@ -21,9 +21,18 @@
             }
 
             const proxy = reactive(obj)
-            console.log(proxy.age)
-            proxy.test.test1.test2 = 22
-            console.log(delete proxy.age)
+            console.log(proxy.age,proxy)
+            // proxy.test.test1.test2 = 22
+            // console.log(delete proxy.age)
+            //下面这个是实践 证明 两个对象设置同一个代理对象，会引用同一个对象（weakMap判断）
+            const obj2 = {
+                name:'obj2name属性'
+            }
+            const proxy1 = reactive(obj2)
+            const proxy2 = reactive(obj2)
+            console.log(proxy1 === proxy2,proxy1,proxy2)
+            proxy1.name = 'proxy1的name'
+            console.log(proxy1.name,proxy2.name)
         </script>
     </body>
 </html>

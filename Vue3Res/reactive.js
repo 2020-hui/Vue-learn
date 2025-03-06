@@ -27,6 +27,8 @@ export function reactive(target){
             let result = true //set函数需要返回布尔值
             if(oldValue !==value){
                 //更新操作
+                //暂时进行设置
+                result = Reflect.set(target,key,value,receiver)
             }
             return result
         }
