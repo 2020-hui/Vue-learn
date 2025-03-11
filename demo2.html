@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        import {myBind,myApply } from './Js-handle/myBind.js'
+        const obj = {name:'小浪'}
+        Function.prototype.myBind = myBind
+        Function.prototype.myApply = myApply
+        const fn = function(a,b,c){
+            console.log(this.name,a,b,c)
+        }
+        fn.myBind(obj,1,2,3)()
+        fn.myApply(obj,[1,2,3])
+
+        class Person{
+            constructor(name,age){
+                this.name = name
+                this.age = age
+            }
+            say(){
+                console.log(this.name)
+            }
+        }
+        let p = new Person('小往',10)
+        console.log(p.__proto__.__proto__ === Object.prototype)
+        console.log(p.__proto__ === Person)
+    </script>
+</body>
+</html>
